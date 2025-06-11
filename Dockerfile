@@ -11,8 +11,8 @@ RUN docker-php-ext-install pdo pdo_pgsql
 # Enable Apache modules
 RUN a2enmod rewrite
 
-# Copy application files from the Reminders App directory to the web root
-COPY "Reminders App/" /var/www/html/
+# Copy application files from the reminders-app directory to the web root
+COPY reminders-app/ /var/www/html/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
