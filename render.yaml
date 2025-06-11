@@ -3,7 +3,6 @@ services:
     name: reminders-app
     env: docker
     repo: https://github.com/roypushpak/reminders-app
-    rootDir: ./Reminders App
     healthCheckPath: /
     envVars:
       - key: DB_PASS
