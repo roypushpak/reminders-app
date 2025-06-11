@@ -27,9 +27,8 @@ services:
           name: reminders-db
           property: port
 
-  - type: pserv
+  - type: postgres
     name: reminders-db
-    env: mysql
     plan: free # Or your desired plan
     databaseName: reminders
     databaseUser: reminders_user

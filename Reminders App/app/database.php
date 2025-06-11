@@ -6,10 +6,17 @@
 
 function db_connect() {
     try { 
-        $dbh = new PDO('mysql:host=' . DB_HOST . ';port='. DB_PORT . ';dbname=' . DB_DATABASE, DB_USER, DB_PASS);
+        $dsn = sprintf(
+            'pgsql:host=%s;port=%s;dbname=%s',
+            DB_HOST,
+            DB_PORT,
+            DB_DATABASE
+        );
+        $dbh = new PDO($dsn, DB_USER, DB_PASS);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $dbh;
     } catch (PDOException $e) {
-        echo "Database is down. Error: " . $e->getMessage();
+        echo "Database connection failed. Error: " . $e->getMessage();
         // We should set a global variable here so we know the DB is down.
         $_SESSION['DB_DOWN'] = true;
         exit;
