@@ -47,7 +47,8 @@ class User {
       // Connect to database.
       $db = db_connect();
       $sixtySeconds = date('Y-m-d H:i:s', time() - 60);
-      $statement = $db->prepare("select count(*) as count_number from log where username = :username and attempt = 'bad' and time >= :sixtySeconds order by time desc limit 3");
+      // Fixed query: Removed ORDER BY and LIMIT from the count query
+      $statement = $db->prepare("SELECT COUNT(*) as count_number FROM log WHERE username = :username AND attempt = 'bad' AND time >= :sixtySeconds");
       $statement->bindValue(':username', $username);
       $statement->bindValue(':sixtySeconds', $sixtySeconds);
       $statement->execute();
