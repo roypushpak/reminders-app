@@ -6,8 +6,9 @@
 
 function db_connect() {
     try { 
+        // Add sslmode=disable to the DSN to disable SSL
         $dsn = sprintf(
-            'pgsql:host=%s;port=%s;dbname=%s',
+            'pgsql:host=%s;port=%s;dbname=%s;sslmode=disable',
             DB_HOST,
             DB_PORT,
             DB_DATABASE
