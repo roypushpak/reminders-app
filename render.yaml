@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: reminders-app
+    env: docker
+    repo: https://github.com/roypushpak/reminders-app
+    rootDir: ./Reminders App
+    healthCheckPath: /
+    envVars:
+      - key: DB_PASS
+        fromDatabase:
+          name: reminders-db
+          property: password
+      - key: RENDER_DATABASE_HOST
+        fromDatabase:
+          name: reminders-db
+          property: host
+      - key: RENDER_DATABASE_USER
+        fromDatabase:
+          name: reminders-db
+          property: user
+      - key: RENDER_DATABASE_NAME
+        fromDatabase:
+          name: reminders-db
+          property: database
+      - key: RENDER_DATABASE_PORT
+        fromDatabase:
+          name: reminders-db
+          property: port
+
+  - type: pserv
+    name: reminders-db
+    env: mysql
+    plan: free # Or your desired plan
+    databaseName: reminders
+    databaseUser: reminders_user

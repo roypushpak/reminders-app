@@ -14,9 +14,10 @@ define('LOGS', ROOT . DS . 'logs');
 define('FILES', ROOT . DS. 'files');
 
 // ---------------------  NEW DATABASE TABLE -------------------------
-define('DB_HOST',         's7n.h.filess.io');
-define('DB_USER',         'COSC4806_orangecat'); 
-define('DB_PASS',         $_ENV['DB_PASS']);
-define('DB_DATABASE',     'COSC4806_orangecat');
-define('DB_PORT',         '3305');
+// Use Render environment variables if available, otherwise use local settings.
+define('DB_HOST', getenv('RENDER_DATABASE_HOST') ?: 's7n.h.filess.io');
+define('DB_USER', getenv('RENDER_DATABASE_USER') ?: 'COSC4806_orangecat');
+define('DB_PASS', getenv('RENDER_DATABASE_PASSWORD') ?: getenv('DB_PASS'));
+define('DB_DATABASE', getenv('RENDER_DATABASE_NAME') ?: 'COSC4806_orangecat');
+define('DB_PORT', getenv('RENDER_DATABASE_PORT') ?: '3305');
 ?>
