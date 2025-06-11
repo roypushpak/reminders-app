@@ -8,10 +8,15 @@ class App {
     protected $params = [];
 
     public function __construct() {
-        if (isset($_SESSION['auth']) == 1) {
-            //$this->method = 'index';
+        error_log('Session data: ' . print_r($_SESSION, true));
+        error_log('Request URI: ' . $_SERVER['REQUEST_URI']);
+        
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+            error_log('User is authenticated');
             $this->controller = 'home';
-        } 
+        } else {
+            error_log('User is not authenticated');
+        }
 
         // This will return a broken up URL
         // it will be /controller/method
